@@ -17,13 +17,8 @@ describe('user routes', () => {
   });
 
   it('creates a new user', async () => {
-    const res = await request(app).post('/api/v1/users').send({ mockUser });
-    const { username, password } = mockUser;
-
-    expect(res.status).toEqual({
-      id: expect.any(String),
-      username,
-      password,
-    });
+    const res = await request(app).post('/api/v1/users').send(mockUser);
+    expect(res.status).toEqual(200);
+    expect(res.body.message).toEqual('Account created successfully!');
   });
 });
